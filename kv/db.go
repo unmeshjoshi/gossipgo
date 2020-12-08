@@ -16,6 +16,7 @@ import (
 type DB interface {
 	Get(args *storage.GetRequest) <-chan *storage.GetResponse
 	Put(args *storage.PutRequest) <-chan *storage.PutResponse
+	Scan(args *storage.ScanRequest) <-chan *storage.ScanResponse
 	Increment(args *storage.IncrementRequest) <-chan *storage.IncrementResponse
 }
 
@@ -175,6 +176,11 @@ func (db *DistDB) Put(args *storage.PutRequest) <-chan *storage.PutResponse {
 		args, &storage.PutResponse{}).(chan *storage.PutResponse)
 }
 
+// Scan .
+func (db *DistDB) Scan(args *storage.ScanRequest) <-chan *storage.ScanResponse {
+	// TODO(spencer): range of keys.
+	return nil
+}
 
 // Increment .
 func (db *DistDB) Increment(args *storage.IncrementRequest) <-chan *storage.IncrementResponse {

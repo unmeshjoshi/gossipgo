@@ -69,3 +69,10 @@ func (db *LocalDB) Increment(args *storage.IncrementRequest) <-chan *storage.Inc
 	return db.invokeMethod("Increment",
 		args, &storage.IncrementResponse{}).(chan *storage.IncrementResponse)
 }
+
+
+// Scan passes through to local range.
+func (db *LocalDB) Scan(args *storage.ScanRequest) <-chan *storage.ScanResponse {
+	return db.invokeMethod("Scan",
+		args, &storage.ScanResponse{}).(chan *storage.ScanResponse)
+}

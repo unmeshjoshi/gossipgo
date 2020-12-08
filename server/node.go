@@ -218,7 +218,7 @@ func (n *Node) initStoreMap(engines []storage.Engine) error {
 			if err != nil {
 				return err
 			}
-			log.Printf("Initialized store %s: %s", s.Ident, capacity)
+			log.Printf("Initialized store %v: %d", s.Ident, capacity)
 			n.storeMap[s.Ident.StoreID] = s
 		} else {
 			bootstraps.PushBack(s)

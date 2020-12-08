@@ -187,7 +187,7 @@ func newServer() (*server, error) {
 
 func (s *server) start(engines []storage.Engine) error {
 	go s.rpc.ListenAndServe() // blocks, so launch in a goroutine
-	log.Printf("Started RPC server at", *rpcAddr)
+	log.Print("Started RPC server at", *rpcAddr)
 
 	s.gossip.Start()
 	log.Printf("Started gossip instance")
@@ -210,7 +210,7 @@ func (s *server) start(engines []storage.Engine) error {
 }
 
 func (s *server) initHTTP() {
-	log.Printf("Starting HTTP server at", *httpAddr)
+	log.Print("Starting HTTP server at", *httpAddr)
 	s.mux.HandleFunc("/_admin/healthz", s.handleHealthz)
 	s.mux.HandleFunc(kv.KVKeyPrefix, s.kvREST.HandleAction)
 	s.mux.HandleFunc(structured.StructuredKeyPrefix, s.structuredREST.HandleAction)

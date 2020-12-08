@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"gopkg.in/yaml.v2"
 	"gossipgo/gossip"
 	"net"
 	"gossipgo/util"
@@ -90,4 +91,17 @@ func ChooseRandomReplica(replicas []Replica) *Replica {
 	}
 	r := util.CachedRand
 	return &replicas[r.Intn(len(replicas))]
+}
+
+
+// ParseZoneConfig parses a YAML serialized ZoneConfig.
+func ParseZoneConfig(in []byte) (*ZoneConfig, error) {
+	z := &ZoneConfig{}
+	err := yaml.Unmarshal(in, z)
+	return z, err
+}
+
+// ToYAML serializes a ZoneConfig as YAML.
+func (z *ZoneConfig) ToYAML() ([]byte, error) {
+	return yaml.Marshal(z)
 }
