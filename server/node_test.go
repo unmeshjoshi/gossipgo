@@ -70,5 +70,7 @@ func TestBootstrapCluster(t *testing.T) {
 			formatKeys(keys), formatKeys(expectedKeys))
 	}
 
+
+
 	// TODO(spencer): check values.
 }
