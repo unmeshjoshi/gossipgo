@@ -50,7 +50,7 @@ func isNetworkConnected(nodes map[string]*Gossip) bool {
 // every node in the network within numCycles cycles of the gossip protocol.
 func verifyConvergence(numNodes, maxCycles int, t *testing.T) {
 	var connectedAtCycle int
-	SimulateNetwork(numNodes, "unix", testGossipInterval, func(cycle int, nodes map[string]*Gossip) bool {
+	SimulateNetwork(numNodes, "tcp", testGossipInterval, func(cycle int, nodes map[string]*Gossip) bool {
 		// Every node should gossip.
 		for addr, node := range nodes {
 			node.AddInfo(addr, int64(cycle), time.Hour)
