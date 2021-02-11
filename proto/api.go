@@ -18,8 +18,8 @@
 package proto
 
 import (
-	"github.com/cockroachdb/cockroach/util"
 	gogoproto "github.com/gogo/protobuf/proto"
+	"gossipgo/util"
 )
 
 // TODO(spencer): change these string constants into a type.
@@ -562,10 +562,11 @@ func (rh *ResponseHeader) SetGoError(err error) {
 		rh.Error = &Error{}
 	}
 	if !rh.Error.SetValue(err) {
-		var canRetry bool
-		if r, ok := err.(util.Retryable); ok {
-			canRetry = r.CanRetry()
-		}
+		//TODO
+		var canRetry bool = false
+		//if r, ok := err.(util.Retryable); ok {
+		//	canRetry = r.CanRetry()
+		//}
 		rh.Error.SetValue(&GenericError{
 			Message:   err.Error(),
 			Retryable: canRetry,

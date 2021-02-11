@@ -15,7 +15,7 @@
 //
 // Author: Jiajia Han (hanjia18@gmail.com)
 // Author: Spencer Kimball (spencer.kimball@gmail.com)
-
+syntax = "proto2";
 package proto;
 
 import "config.proto";
@@ -25,6 +25,7 @@ import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 message Timestamp {
   option (gogoproto.goproto_stringer) = false;
 
+  // Holds a wall time, typically a unix epoch time
   // Holds a wall time, typically a unix epoch time
   // expressed in nanoseconds.
   optional int64 wall_time = 1 [(gogoproto.nullable) = false];

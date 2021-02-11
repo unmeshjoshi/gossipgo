@@ -15,6 +15,7 @@
 //
 // Author: Spencer Kimball (spencer.kimball@gmail.com)
 
+syntax = "proto2";
 package proto;
 
 import "config.proto";

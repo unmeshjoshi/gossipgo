@@ -18,9 +18,8 @@
 package proto
 
 import (
+	"gossipgo/util"
 	"net"
-
-	"github.com/cockroachdb/cockroach/util"
 )
 
 // FromNetAddr returns an Addr object based on the supplied net.Addr.

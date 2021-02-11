@@ -18,7 +18,7 @@
 package proto
 
 import (
-	"github.com/cockroachdb/cockroach/util"
+	"gossipgo/util"
 	gogoproto "github.com/gogo/protobuf/proto"
 )
 

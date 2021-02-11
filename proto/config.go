@@ -18,6 +18,7 @@
 
 package proto
 
+
 import (
 	"bytes"
 	"fmt"

@@ -15,7 +15,7 @@
 //
 // Author: Kathy Spradlin (kathyspradlin@gmail.com)
 // Author: Spencer Kimball (spencer.kimball@gmail.com)
-
+syntax = "proto2";
 package proto;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";

@@ -26,12 +26,11 @@ import (
 	"sort"
 	"strings"
 
-	"code.google.com/p/biogo.store/interval"
-	"code.google.com/p/biogo.store/llrb"
-	"code.google.com/p/go-uuid/uuid"
-	"github.com/cockroachdb/cockroach/util"
-	"github.com/cockroachdb/cockroach/util/encoding"
+	"github.com/biogo/store/interval"
+	"github.com/biogo/store/llrb"
 	gogoproto "github.com/gogo/protobuf/proto"
+	"github.com/google/uuid"
+	"gossipgo/util"
 )
 
 // KeyMaxLength is the maximum length of a Key in bytes.
@@ -282,7 +281,7 @@ func (t *Timestamp) Backward(s Timestamp) {
 // the checksum includes the integer as 8 bytes in big-endian order.
 func (v *Value) InitChecksum(key []byte) {
 	if v.Checksum == nil {
-		v.Checksum = gogoproto.Uint32(v.computeChecksum(key))
+		//v.Checksum = gogoproto.Uint32(v.computeChecksum(key))
 	}
 }
 
@@ -307,13 +306,14 @@ func (v *Value) Verify(key []byte) error {
 // checksum includes it directly; if the value contains an integer,
 // the checksum includes the integer as 8 bytes in big-endian order.
 func (v *Value) computeChecksum(key []byte) uint32 {
-	c := encoding.NewCRC32Checksum(key)
-	if v.Bytes != nil {
-		c.Write(v.Bytes)
-	} else if v.Integer != nil {
-		c.Write(encoding.EncodeUint64(nil, uint64(v.GetInteger())))
-	}
-	return c.Sum32()
+	//c := encoding.NewCRC32Checksum(key)
+	//if v.Bytes != nil {
+	//	c.Write(v.Bytes)
+	//} else if v.Integer != nil {
+	//	c.Write(encoding.EncodeUint64(nil, uint64(v.GetInteger())))
+	//}
+	//return c.Sum32()
+	return 0
 }
 
 // KeyGetter is a hack to allow Compare() to work for the batch
@@ -352,7 +352,7 @@ func NewTransaction(name string, baseKey Key, userPriority int32,
 	return &Transaction{
 		Name:          name,
 		Key:           baseKey,
-		ID:            []byte(uuid.New()),
+		ID:            []byte(uuid.New().NodeID()),
 		Priority:      priority,
 		Isolation:     isolation,
 		Timestamp:     now,
